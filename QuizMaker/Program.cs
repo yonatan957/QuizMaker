@@ -10,34 +10,39 @@ namespace QuizMaker
         public static void foo1()
         {
             XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load("C:\\Users\\yonat\\source\\repos\\QuizMaker\\QuizMaker\\Services\\Data.xml");
-            Console.WriteLine("what's the question ?");
-            string question = Console.ReadLine();
-            Console.WriteLine("what's the answer ?");
-            string answer = Console.ReadLine();
-
-            XmlNode e = xmlDoc.CreateNode(XmlNodeType.Element, "item", "C:\\Users\\yonat\\source\\repos\\QuizMaker\\QuizMaker\\Services\\Data.xml");
-            XmlElement questionnode = e.OwnerDocument.CreateElement("question");
-            questionnode.InnerText = question;
-            XmlElement answernode = e.OwnerDocument.CreateElement("answer");
-            answernode.InnerText = answer;
+            xmlDoc.Load("Data.xml");
+            XmlElement item = xmlDoc.CreateElement("item");
+            XmlElement question = xmlDoc.CreateElement("question");
+            XmlElement answer = xmlDoc.CreateElement("answer");
+            Console.WriteLine("Enter your question");
+            question.InnerText = Console.ReadLine();
+            Console.WriteLine("Enter your answer");
+            answer.InnerText = Console.ReadLine();
+            item.AppendChild(question);
+            item.AppendChild(answer);
+            xmlDoc.DocumentElement.AppendChild(item);
+            xmlDoc.Save("C:\\Users\\yonat\\source\\repos\\QuizMaker\\QuizMaker\\Data.xml");
         }
+        
         public static void foo2()
         {
             XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load("C:\\Users\\yonat\\source\\repos\\QuizMaker\\QuizMaker\\Services\\Data.xml");
+            xmlDoc.Load("Data.xml");
+            List<XmlNode> list = new List<XmlNode>();
             foreach (XmlNode node in xmlDoc.DocumentElement.ChildNodes)
             {
+                list.Add(node);
                 XmlNode nodequestion = node.SelectSingleNode("question");
-                Console.WriteLine(nodequestion.InnerText);
+                Console.WriteLine(nodequestion.InnerText.ToString().Trim());
                 string answer = Console.ReadLine();
                 XmlNode nodeanswer = node.SelectSingleNode("answer");
                 if (nodeanswer.InnerText.ToString().Trim() == answer)
                 {
                     Console.WriteLine("great!!!");
                 }
-                else {
-                    Console.WriteLine("you was wrong!!!");
+                else
+                {
+                    Console.WriteLine($"you was wrong!!! the real answer is \n {nodeanswer.InnerText.ToString().Trim()}");
                 }
             }
         }

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<quiz>
+  <item>
+    <question>		
+			who is the king of the world ?
+		</question>
+    <answer>	
+			bibi
+		</answer>
+  </item>
+  <item>
+    <question>
+			who is the greatest vilen ?
+		</question>
+    <answer>
+			the joker
+		</answer>
+  </item>
+  <item>
+    <question>what is the capitol of israel ?</question>
+    <answer>jerusalem</answer>
+  </item>
+  <item>
+    <question>how many seasons there is in breaking bad ?</question>
+    <answer>5</answer>
+  </item>
+</quiz>
